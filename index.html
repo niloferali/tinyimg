@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="icon" type="image/x-icon" href="./favicon.png">
+
+    <link href="./css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+
+    <title>Image Compressor</title>
+
+    <script src="./js/file-saver.min.js"></script>
+    <script src="./js/compress.js"></script>
+    <script src="./js/jszip.min.js"></script>
+  </head>
+  <body style="background-color: #fafafa; padding: 1.2em;">
+    <div class="d-flex border-bottom">
+      <i class="bi bi-images h2 text-primary"></i> &nbsp; &nbsp;
+      <h1 class="h3 text-primary">Image Compressor</h1>
+    </div>
+
+    <div class="mt-4 mb-4 d-flex">
+      <div class="input-group w-auto">
+        <input type="number" class="form-control form-control-sm"
+          style="max-width: 70px;"
+          placeholder="Max Resolution (Pixels)" value="4096" id="pixels" 
+        />
+        <span class="input-group-text" id="basic-addon2">px</span>
+      </div>
+      &nbsp; &nbsp; &nbsp;
+      <div class="input-group w-auto">
+        <input type="number" class="form-control form-control-sm"
+          style="max-width: 60px;" max="10"
+          placeholder="File Size (MB)" value="1" id="size" 
+        />
+        <span class="input-group-text" id="basic-addon2">MB</span>
+      </div>
+    </div>
+
+    <input type="file" multiple="true" accept="image/*"
+        class="form-control-sm mb-3" onchange="handleImages(event);" 
+        style="width: 250px;"
+      />
+
+    <div class="mb-2">
+      <button id="downloadBtn" class="btn btn-sm btn-link p-0" 
+        onclick="downloadImages()" style="display: none;">
+          Download Compressed Image(s)
+      </button>
+    </div>
+
+    <div class="row d-none" id="size-info">
+      <div>Original Size: <label id="original-size"></label></div>
+      <div>Compressed Size: <label id="final-size"></label></div>
+    </div>
+
+    <div class="row" id="compressedBlock"></div>
+
+    <img src="" id="imgSize" style="display: none;" />
+    <div class="col-12 col-sm-6 col-lg-4 image-item d-none" id="image-item">
+      <div class="box p-3">
+        <img src="https://media.istockphoto.com/id/1222357475/vector/image-preview-icon-picture-placeholder-for-website-or-ui-ux-design-vector-illustration.jpg?s=612x612&w=0&k=20&c=KuCo-dRBYV7nz2gbk4J9w1WtTAgpTdznHu55W9FjimE=" />
+        <div class="image-info">
+          <p>DSC_0016.JPG</p>
+          <p>6000 x 4000 px, 5.73 MB</p>
+          <p class="mt-2">Compressed:</p>
+          <p>1824 x 1216 px, 0.47 MB (91.80%)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/exif-js"></script> -->
+    <script src="./js/exif.saver.js"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
+  </body>
+</html>
